@@ -70,13 +70,15 @@
     		<img src="{{profile.profile_picture}}">
   		</div>
   		<div class="info">
-    		<p><span>{{profile.full_name}}</span> <a href$="{{_computeHref(profile)}}">@<span>{{profile.username}}</span></a></p>
+    		<p>
+					<span>{{profile.full_name}}</span>
+					<a href="{{_computeHref(profile)}}">
+						@<span>{{profile.username}}</span>
+					</a>
+				</p>
     		<template is="dom-if" if="{{profile.bio}}">
     			<p>{{profile.bio}}</p>
     		</template>
-    		<template is="dom-if" if="{{profile.website}}">
-    			<p><a href$="{{profile.website}}">{{_computeExpression4(profile)}}</a></p><a href$="{{profile.website}}">
-    		</a></template>
     		<div class="data">
 				<ul>
 					<li>{{profile.counts.media}}<span>Posts</span></li>
@@ -100,9 +102,6 @@
 				this.$.instagram.params = this.getParams();
 				this.$.instagram.generateRequest();
       },
-      sliced: function (value, size) {
-        return value.slice(size);
-      },
       handleResponse: function(response) {
         this.profile = response.detail.data;
       },
@@ -116,9 +115,6 @@
       },
       _computeHref: function (profile) {
         return 'http://instagram.com/' + profile.username;
-      },
-      _computeExpression4: function (profile) {
-        return this.sliced(profile.website, 7);
       }
     });
   </script>
