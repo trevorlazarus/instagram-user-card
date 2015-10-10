@@ -71,10 +71,10 @@
   		</div>
   		<div class="info">
     		<p><span>{{profile.full_name}}</span> <a href$="{{_computeHref(profile)}}">@<span>{{profile.username}}</span></a></p>
-    		<template is="dom-if" if="{{ !!profile.bio }}">
+    		<template is="dom-if" if="{{profile.bio}}">
     			<p>{{profile.bio}}</p>
     		</template>
-    		<template is="dom-if" if="{{ !!profile.website }}">
+    		<template is="dom-if" if="{{profile.website}}">
     			<p><a href$="{{profile.website}}">{{_computeExpression4(profile)}}</a></p><a href$="{{profile.website}}">
     		</a></template>
     		<div class="data">
