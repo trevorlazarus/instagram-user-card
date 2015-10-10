@@ -1,17 +1,21 @@
 {
   "name": "instagram-user-card",
   "version": "0.1.0",
-  "description": "Web component to show a card of your profile in Instagram using Polymer.",
-  "license": "MIT",
-  "main": "dist/instagram-user-card.html",
+  "homepage": "https://github.com/willsteinmetz/instagram-user-card",
   "authors": [
-    "Will Steinmetz <willsteinmetz@users.noreply.github.com>"
+    "kessiler <keessiler@hotmail.com>",
+    "Will Steinmetz <willsteinmetz@me.com>"
   ],
+  "description": "Web component to show a card of your profile in Instagram using Polymer.",
+  "main": "dist/instagram-user-card.html",
+  "moduleType": [],
   "keywords": [
     "polymer",
-    "web-components",
+    "web",
+    "components",
     "instagram"
   ],
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -20,9 +24,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "^1.0.0",
-    "byutv-jsonp": "~1.2.0"
-  },
-  "homepage": "https://github.com/willsteinmetz/instagram-user-card",
-  "moduleType": []
+    "byutv-jsonp": "~1.2.0",
+    "polymer": "~1.0"
+  }
 }
