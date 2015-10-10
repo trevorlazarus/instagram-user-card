@@ -60,11 +60,9 @@
   		</style>
     <template>
 
-      <byutv-jsonp id="instagram"
-      	auto
+			<byutv-jsonp id="instagram"
         url="{{_computeUrl(accessToken, clientId)}}"
         handle-as="json"
-        params="{{getParams()}}"
         on-response="handleResponse"></byutv-jsonp>
 
   		<aside class="instaWidget">
@@ -93,26 +91,14 @@
       Polymer({
         is: 'instagram-card',
         properties: {
-          // @todo Is used by default my access token, the ideal is for you to change your token
-          accessToken: {
-            type: String,
-						value: '250693004.1677ed0.2dc965919f99441686dafeb7c253611f',
-            notify: true
-          },
-          clientId: {
-            type: String,
-						value: '250693004',
-            notify: true
-          },
-          profile: {
-            type: Object,
-            value: function () {
-              return {};
-            }
-          }
+					accessToken: String,
+					clientId: String,
+					profile: Object
         },
         ready: function () {
-					this.$.instagram.url = this._computeUrl(this.accessToken, this.clientId);
+					this.$.instagram.url = this._computeUrl();
+					this.$.instagram.params = this.getParams();
+					this.$.instagram.generateRequest();
         },
         sliced: function (value, size) {
           return value.slice(size);
@@ -121,13 +107,12 @@
           this.profile = response.detail.data;
         },
 				getParams: function() {
-					debugger;
 					return {
 						access_token: this.accessToken
 					};
 				},
-        _computeUrl: function (accessToken, clientId) {
-          return 'https://api.instagram.com/v1/users/' + clientId + '/?access_token=' + accessToken + '&callback=';
+        _computeUrl: function () {
+					return 'https://api.instagram.com/v1/users/' + this.clientId;
         },
         _computeHref: function (profile) {
           return 'http://instagram.com/' + profile.username;
