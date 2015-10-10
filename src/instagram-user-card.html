@@ -3,115 +3,163 @@
 
 <dom-module id="instagram-user-card">
   <style>
-		.instaWidget {
-			width:325px;
-			text-align:center;
-			background-color:#ecf0f1;
-			border-radius:15px;
-			font-family:Helvetica;
-			line-height:15px;
-			box-shadow:2px 2px 5px rgba(0,0,0,.7);
-		}
-		.instaWidget .picture {
-			padding-top:10px;
-		}
-		.instaWidget .picture img {
-			width:150px;
-			border-radius:50%;
-			margin-top:5px;
-			border:8px solid white;
-		}
-		.instaWidget .info p {
-			color:#7f8c8d;
-			font-weight:600;
-			font-size:.9em;
-		}
+    .instagram-card {
+      background-color: #125688;
+      border: 1px solid #D5D5D5;
+      border-radius: 5px;
+      color: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      font-weight: 100;
+      text-align: center;
+      width: 256px;
+    }
 
-		.instaWidget .info p a {
-			color:#bdc3c7
-		}
+    .instagram-card .card-top {
+      background-color: #fff;
+      height: 65px;
+      position: relative;
+      z-index: 0;
+    }
 
-		.instaWidget .info a {
-			text-decoration:none;
-			color:#7f8c8d;
-		}
-		.instaWidget .info a:hover {
-			color:#484949;
-		}
-		.instaWidget .info .data {
-			height:45px;
-			color:#81878b;
-		}
-		.instaWidget .info .data li {
-			width:32%;
-			display:inline-block;
-			font-size:1.3em;
-			border-right:solid 1px #bdc3c7;
-		}
-		.instaWidget .info .data li span {
-			display:block;
-			text-transform:uppercase;
-			font-size:.5em;
-			margin-top:.5em;
-		}
-		.instaWidget .info .data li:last-child {
-			border: none;
-		}
-	</style>
+    .instagram-card .logo-link {
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAFdklEQVR42u2d0W8URRzHJ7Zai09EG0m4zuzt/AVIAy+8UOSFpoI1GgXFS2ljMSExqA820D9AEqP/gKKPVg2BQELAtgmmCQIm5Iy0Dz5gJNhoeLgW7JFQ/X3LPFBo7262czuze79f8kkIu/Ob336/27vbnZldUSvU5kK7VlGJOE9UiP+YhqgYzUrQUNhGsVt2UOPDxLRJtqRZVFuWjHbT0BKaikaCdt5GlDUL6JoytK0nfh+xqFmsZrEIjdcSfytR1SxSs6lC6xXix1LhM39WszhpMQvNHz37RzSLkjYjAhHJbpz9VzULkjZXIyk7cPYfJO5pFiRt7kF7GHBRsxi+uAgD5jUL4Yt5oVmExzlLfECUiMEGwH4fEj8m6Y8NWMl7InlAy0/YgOSMCwdBeSbYgGS86ciAI2xAMvodGTDIBiRjryMDhtiAZOxzZMAwG8AGsAFsABvABrABbAAbwAbwdUBmeIWvhP3yuiMD3mcDkvGNIwPOsgHJeEC8sU7xR1phPGCBuEFMEWcMU+b/Fhzk/5rYT+wl9jUA9jtIfJvnEbFZ4gTxcizVJrFGYBv2wb4+Jprl0YCfiFd1t7Se4o02aIscbIA9fxHvCkeBXMjJBjTGBS2jgnAcyIncbEBtvhRNDvTBBqzOVyKlQF9swEomRMqBPtmAh/ytZfSiSDnQJ/pmA1T0tvAU6LvVDbgsPAdqyJIB14hx4rtVGE9wMP0BGNBve9LU0eBaMw04UOdgRi1y/a4Lsk14jmJBPoVaLOoeraPBgWYaMCRqhOWFzqcikEAtNheKPkfEhtc8k6R6mrbftMjVG5ABvRZ138Sx+hoTHq5xJ7Jgsch7QUvVJQKJWKkXLG5lL+JYQzMAebZY5LkhwgrU/5tF/Vu8GeDoz3gyQAMmLerfGaIBeyzynA7QgNMW9e8J0YC+FjKgL0QDdrXQR1BviAb0tNCX8NbwDJCRou33G5/ZEM7PUPwktvgZeh/HGp4BSj1L229Z5NqV0QuxW3jUTHAGmM4vWeQ6kdFbEZfQJlQDvrC5GRcVlPebcXF3oc3yZtznIRsw0AK3owdCNqCLuJvjAZm7MR1jsAaYAs5Z5nwnQ0OS59AudAPessz5T6xU6oPy6BN92z5PInQDcGCdtN9ty7yTgV/5gtuxjDqDN8AUMWaZF5xMUfyTCeobQ9tsGCCjjbTvHWez4/zPirsTq2hjZgwwhRxNPDlXqYJwHMi5jgcUHkWOTBkQqwjz839NeMBzREk4CuRCzoS1lItKtWXOAFPMdgcLNAaKyn6BBtqgrYMFGtuRL5MGmIKOOVyitDtWdZco7Xa4ROkY8mbaAFPUKceL9GZWWaQ3g20O+zklEHkwIJbRBmp7BTkywpVYqg15McCYoJ6n9tczIP511CoQeTLA/CVgAtTPAYt/GTUKRB4NQOiHH0c/BCj+9xYfO/4NcFDo8YDEPy5MtIwBptgdxC8ehUffOwSiFQ0wBbcTHxFzKQo/hz6L1LdA5NIA+++GLnMX9Y8mCo/cY+hLmGADnjBCPWeeVnLG0esTKybXfuQWJtiAxg5mE/Ea8RkxRfxZ511nVbPPFNqYtituXbAB6zu4TkIRPUQv0QfMv3vMtidGrdgAD5FXA4YEh9fHVg4KDq+PrTwiOLy+wmRScFhMd3FvABgVHBZPCnBvAJggPiYOEcMtziFokfT5Q/wqQ7/M88s8/XKBX2fr+3W2RSk7lgfMWRAPA/+yg19p7o+RR2csPLM8r4ZFSYsZaP74b9iXiKpmcZpNFVrXeuDGv5pFahaL0Lje1dw2oqxZLNeUoW2Da2clvhMOE9NEhVjSLKAtS0a7aWgJTYVtqM2FdjO3/vxyMha1USpGsxI0FDXif4alOjA+/ST+AAAAAElFTkSuQmCC);
+      backround-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 32px;
+      display: block;
+      height: 32px;
+      left: .875rem;
+      opacity: .65;
+      position: absolute;
+      top: .875rem;
+      width: 32px;
+    }
+
+    .instagram-card .picture {
+      margin: -65px auto 0;
+      position: relative;
+      width: 130px;
+    }
+
+    .instagram-card .picture img {
+      background-color: #fff;
+      border: 3px solid white;
+      border-radius: 50%;
+      height: 120px;
+      width: 120px;
+    }
+
+    .instagram-card .info .fullname {
+      display: block;
+      font-size: 1.5rem;
+    }
+
+    .instagram-card .info .profile-link {
+      font-size: .8rem;
+    }
+
+    .instagram-card .info .bio {
+      color: #fff;
+      font-size: .9rem;
+      padding: .5rem .5rem 0;
+    }
+
+    .instagram-card .info a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .instagram-card .info a:hover {
+      color: #ddd;
+      text-decoration: underline;
+    }
+
+    .instagram-card .data {
+      border-top: 1px solid #D5D5D5;
+      margin-top: .5rem;
+    }
+
+    .instagram-card .data ul {
+      margin: 0;
+      padding: 1rem 0;
+    }
+
+    .instagram-card .data li {
+      display: inline-block;
+      font-size: 1.3rem;
+      width: 32%;
+    }
+
+    .instagram-card .count-label {
+      color: #ccc;
+      display: block;
+      text-transform: uppercase;
+      font-size: .5rem;
+    }
+
+    .instagram-card .info .data li:last-child {
+      border: none;
+    }
+  </style>
   <template>
 
-		<byutv-jsonp id="instagram"
+    <byutv-jsonp id="instagram"
       url="{{_computeUrl(accessToken, clientId)}}"
       handle-as="json"
       on-response="handleResponse"></byutv-jsonp>
 
-		<aside class="instaWidget">
-  		<div class="picture">
-    		<img src="{{profile.profile_picture}}">
-  		</div>
-  		<div class="info">
-    		<p>
-					<span>{{profile.full_name}}</span>
-					<a href="{{_computeHref(profile)}}">
-						@<span>{{profile.username}}</span>
-					</a>
-				</p>
-    		<template is="dom-if" if="{{profile.bio}}">
-    			<p>{{profile.bio}}</p>
-    		</template>
-    		<div class="data">
-				<ul>
-					<li>{{profile.counts.media}}<span>Posts</span></li>
-					<li>{{profile.counts.followed_by}}<span>Followers</span></li>
-					<li>{{profile.counts.follows}}<span>Following</span></li>
-				</ul>
-			</div>
-  		</div>
-  	</aside>
-	</template>
+    <article class="instagram-card">
+      <div class="card-top">
+        <a href="{{_computeHref(profile)}}" target="_blank" class="logo-link" title="Instagram Account"></a>
+      </div>
+      <div class="picture">
+        <img src="{{profile.profile_picture}}">
+      </div>
+      <div class="info">
+        <div>
+          <span class="fullname">{{profile.full_name}}</span>
+          <a href="{{_computeHref(profile)}}" target="_blank" class="profile-link">
+            @<span>{{profile.username}}</span>
+          </a>
+        </div>
+        <template is="dom-if" if="{{profile.bio}}">
+          <div class="bio">{{profile.bio}}</div>
+        </template>
+        <div class="data">
+          <ul>
+            <li>{{profile.counts.media}}<span class="count-label">Posts</span></li>
+            <li>{{profile.counts.followed_by}}<span class="count-label">Followers</span></li>
+            <li>{{profile.counts.follows}}<span class="count-label">Following</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+  </template>
+
   <script>
     Polymer({
       is: 'instagram-user-card',
       properties: {
-				accessToken: String,
-				clientId: String,
-				profile: Object
+        accessToken: String,
+        clientId: String,
+        profile: Object
       },
       ready: function () {
-				this.$.instagram.url = this._computeUrl();
-				this.$.instagram.params = this.getParams();
-				this.$.instagram.generateRequest();
+        this.$.instagram.url = this._computeUrl();
+        this.$.instagram.params = this.getParams();
+        this.$.instagram.generateRequest();
       },
       handleResponse: function(response) {
         this.profile = response.detail.data;
       },
-			getParams: function() {
-				return {
-					access_token: this.accessToken
-				};
-			},
+      getParams: function() {
+        return {
+          access_token: this.accessToken
+        };
+      },
       _computeUrl: function () {
-				return 'https://api.instagram.com/v1/users/' + this.clientId;
+        return 'https://api.instagram.com/v1/users/' + this.clientId;
       },
       _computeHref: function (profile) {
         return 'http://instagram.com/' + profile.username;
