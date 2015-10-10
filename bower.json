@@ -1,21 +1,25 @@
 {
-    "name": "instagram-card",
-    "version": "0.0.1",
-    "description": "Web component to show a card of your profile in Instagram using Polymer.",
-    "license": "MIT",
-    "main": "dist/instagram-card.html",
-    "keywords": [
-        "polymer",
-        "web-components",
-        "instagram"
-    ],
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components"
-    ],
-    "dependencies": {
-        "polymer": "Polymer/polymer#~0.3.5",
-        "polymer-jsonp": "Polymer/polymer-jsonp#~0.3.0"
-    }
+  "name": "instagram-card",
+  "version": "0.1.0",
+  "description": "Web component to show a card of your profile in Instagram using Polymer.",
+  "license": "MIT",
+  "main": "dist/instagram-card.html",
+  "authors": [
+    "kessiler <keessiler@hotmail.com>",
+    "Will Steinmetz <willsteinmetz@users.noreply.github.com>"
+  ]
+  "keywords": [
+    "polymer",
+    "web-components",
+    "instagram"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "polymer": "^1.0",
+    "byutv-jsonp": "~1.2.0"
+  }
 }
